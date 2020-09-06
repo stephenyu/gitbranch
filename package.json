@@ -1,6 +1,6 @@
 {
   "name": "branch",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Terminal Branch Navigator",
   "main": "branch.js",
   "bin": {
