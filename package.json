@@ -1,0 +1,15 @@
+{
+  "name": "branch",
+  "version": "1.0.0",
+  "description": "Terminal Branch Navigator",
+  "main": "branch.js",
+  "bin": {
+    "branch": "branch.js"
+  },
+  "author": "s.yu@less3.com",
+  "license": "MIT",
+  "dependencies": {
+    "ora": "^5.0.0",
+    "simple-git": "^2.20.1"
+  }
+}
