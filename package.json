@@ -8,6 +8,7 @@
   },
   "author": "s.yu@less3.com",
   "license": "MIT",
+  "repository": "https://github.com/stephenyu/gitbranch",
   "dependencies": {
     "ora": "^5.0.0",
     "simple-git": "^2.20.1"
