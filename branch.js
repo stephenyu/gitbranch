@@ -34,13 +34,12 @@ function severalBranchOptions(parameter, potentialBranches) {
 }
 
 async function switchToBranch(branchName) {
-  const spinner = ora(`${COLORS.fggreen}Switching to: ${COLORS.fgwhite}${branchName}${COLORS.reset}`).start();
-  await git.init().checkout([branchName]);
-  spinner.clear();
+  ora(`${COLORS.fggreen}Switching to: ${COLORS.fgwhite}${branchName}${COLORS.reset}`).start();
+  await git.checkout([branchName]);
 }
 
 async function getBranches() {
-    const result = await git.init().branch(['-v', '--sort=-committerdate']);
+    const result = await git.branch(['-v', '--sort=-committerdate']);
 
     const branches = [];
     for(const key in result.branches) {
@@ -67,7 +66,14 @@ async function getBranches() {
       const parameter = arguments[0];
 
       if (isNaN(parameter) === false) {
-        await switchToBranch(branches[(~~parameter) - 1]);
+        const index = parseInt(parameter, 10);
+        const targetBranch = branches[index - 1];
+
+        if (targetBranch == null) {
+           throw new Error(`Unknown Index: ${index}`);
+        }
+
+        await switchToBranch(targetBranch);
         process.exit(1);
       }
 
@@ -92,6 +98,7 @@ async function getBranches() {
   }
 
   } catch(error) {
+    console.log(error.message);
     process.exit(0); // git isn't viable here
   }
 })();
